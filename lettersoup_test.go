@@ -31,9 +31,9 @@ func TestGivenValidSoupItReturnsCount(t *testing.T) {
 	for _, testCase := range testCases {
 		testDescription := fmt.Sprintf("Test case %v", testCase)
 		t.Run(testDescription, func(t *testing.T) {
-			gottenCount, err := countWordMatchesInSoup("OIE", testCase.soup)
+			gottenCount, err := countOIEMatchesInSoup(testCase.soup)
 			if gottenCount != testCase.wantedCount || err != nil {
-				t.Fatalf(`countWordMatchesInSoup() = ( %d, "%v" ), want ( %d, nil )`,
+				t.Fatalf(`countOIEMatchesInSoup() = ( %d, "%v" ), want ( %d, nil )`,
 					gottenCount,
 					err,
 					testCase.wantedCount,

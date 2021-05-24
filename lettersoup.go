@@ -5,7 +5,9 @@ import (
 	"fmt"
 )
 
-func countWordMatchesInSoup(word string, soup []string) (count int, err error) {
+const word = "OIE"
+
+func countOIEMatchesInSoup(soup []string) (count int, err error) {
 	wordLength, rowsCount, colsCount := len(word), len(soup), len(soup[0])
 	if wordLength == 0 {
 		return -1, errors.New("Empty word given.")
