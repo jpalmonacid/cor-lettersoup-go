@@ -5,19 +5,23 @@ import (
 	"fmt"
 )
 
-const word = "OIE"
+const (
+	word                = "OIE"
+	soupSizeMaxBoundary = 100
+)
 
 func countOIEMatchesInSoup(soup []string) (count int, err error) {
-	wordLength, rowsCount, colsCount := len(word), len(soup), len(soup[0])
-	if wordLength == 0 {
-		return -1, errors.New("Empty word given.")
+	wordLength, rowsCount, colsCount := len(word), len(soup), 0
+	if rowsCount != 0 {
+		colsCount = len(soup[0])
 	}
-	if rowsCount == 0 && colsCount == 0 {
+	if rowsCount == 0 || rowsCount > soupSizeMaxBoundary || colsCount > soupSizeMaxBoundary {
 		message := fmt.Sprintf(
-			"Matrix size {W: %d, H: %d} is smaller than word (%d).",
+			"Soup size {W: %d, H: %d} is out of bounds. It should not be empty"+
+				"nor have any dimension greater than %d",
 			rowsCount,
 			colsCount,
-			wordLength,
+			soupSizeMaxBoundary,
 		)
 		return -1, errors.New(message)
 	}
